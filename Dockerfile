@@ -20,7 +20,8 @@ RUN native-image --no-server -J-Xmx8G -jar zprint-filter-$ZPRINT_VERSION \
     --initialize-at-build-time --no-fallback
 
 FROM fedora
+WORKDIR /src
 COPY --from=build /app/zprint /usr/bin/
-RUN echo '{:cwd-zprintrc? true}' > .zprintrc && echo '{:cwd-zprintrc? true}' > /root/.zprintrc
+RUN echo '{:cwd-zprintrc? true}' | tee /.zprintrc /root/.zprintrc
 ENTRYPOINT ["/usr/bin/zprint"]
 CMD []/
