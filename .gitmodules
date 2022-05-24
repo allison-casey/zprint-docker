@@ -1,0 +1,3 @@
+[submodule "zprint"]
+	path = zprint
+	url = git@github.com:kkinnear/zprint.git
